@@ -1,0 +1,48 @@
+﻿
+@{
+    string[] Subjects = ViewBag.Subjects;
+    string[] Colors = ViewBag.Colors;
+    string[] Assessments = ViewBag.Assessments;
+    int i = 0, y = 0, count = 0;
+    double bal = 0;
+    foreach (string a in Assessments)
+    {
+        if (a is not null)
+        {
+            bal = bal + Convert.ToInt32(a);
+            count++;
+        }
+    }
+    bal = bal / count;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Оценки</title>
+</head>
+<body>
+    <h1>Оценки по предметам</h1>
+    <p>
+        <table>
+            <tr>
+                <td>Предмет</td>
+                <td>Оценка</td>
+            </tr>
+        @foreach (var s in Subjects)
+        {
+                <tr style ="color:@Colors[i]">
+                    <td>@s</td>
+                    <td>@Assessments[y]</td>
+                </tr>
+                i++;
+                if (i == 3) { i = 0; }
+                y++;
+        }
+        </table>
+    </p>
+    <p>Средний бал: @bal</p>
+</body>
+</html>
+
